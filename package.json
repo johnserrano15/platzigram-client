@@ -1,0 +1,78 @@
+{
+  "name": "platzigramclient",
+  "version": "1.0.0",
+  "description": "Platzigram Client",
+  "scripts": {
+    "lint": "standard",
+    "test": "npm run lint && ava test/**-test.js"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "node": true,
+      "jquery": true
+    },
+    "parser": "babel-eslint",
+    "rules": {
+      "no-console": "warn",
+      "no-use-before-define": "warn",
+      "spaced-comment": "warn"
+    },
+    "extends": "standard"
+  },
+  "eslintIgnore": [
+    "/node_modules/*",
+    "build/*",
+    "!build/index.js",
+    "bundle.js"
+  ],
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "NODE_ENV": "test"
+  },
+  "babel": {
+    "presets": [
+      "@ava/stage-4"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnserrano15/platzigram-client"
+  },
+  "author": "John Serrano <jandreys15@gmail.com> (https://twitter.com/jandrey15)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johnserrano15/platzigram-client/issues"
+  },
+  "homepage": "https://github.com/johnserrano15/platzigram-client#readme",
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "babel-eslint": "^8.0.1",
+    "babel-register": "^6.26.0",
+    "eslint": "^4.8.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "standard": "^10.0.3",
+    "test-listen": "^1.0.2"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "http-hash": "^2.0.0",
+    "jsonwebtoken": "^8.1.0",
+    "micro": "^9.0.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "token-extractor": "^0.1.6",
+    "uuid-base62": "^0.1.0"
+  }
+}
