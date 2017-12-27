@@ -62,11 +62,13 @@
     "eslint-plugin-node": "^5.2.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "nock": "^9.1.5",
     "standard": "^10.0.3",
     "test-listen": "^1.0.2"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
+    "bluebird": "^3.5.1",
     "http-hash": "^2.0.0",
     "jsonwebtoken": "^8.1.0",
     "micro": "^9.0.0",
