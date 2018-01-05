@@ -71,12 +71,28 @@ test('likePicture', async t => {
   const client = t.context.client
 
   let image = fixtures.getImage()
+  image.liked = true
+  image.likes = 1
 
   nock(options.endpoints.pictures)
-    .get(`/${image.publicId}`)
+    .post(`/${image.publicId}/like`)
     .reply(200, image)
 
-  let result = await client.getPicture(image.publicId)
+  let result = await client.likePicture(image.publicId)
 
   t.deepEqual(image, result)
+})
+
+test('listPictures', async t => {
+  const client = t.context.client
+
+  let images = fixtures.getImages(3)
+
+  nock(options.endpoints.pictures)
+    .get('/list')
+    .reply(200, images)
+
+  let result = await client.listPictures()
+
+  t.deepEqual(images, result)
 })
