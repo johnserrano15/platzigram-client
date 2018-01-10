@@ -76,7 +76,7 @@ test('likePicture', async t => {
 
   nock(options.endpoints.pictures)
     .post(`/${image.publicId}/like`)
-    .reply(200, image)
+    .reply(201, image)
 
   let result = await client.likePicture(image.publicId)
 
@@ -95,4 +95,72 @@ test('listPictures', async t => {
   let result = await client.listPictures()
 
   t.deepEqual(images, result)
+})
+
+test('listPicturesByTag', async t => {
+  const client = t.context.client
+
+  let images = fixtures.getImages(3)
+  let tag = 'platzi'
+
+  nock(options.endpoints.pictures)
+    .get(`/tag/${tag}`)
+    .reply(200, images)
+
+  let result = await client.listPicturesByTag(tag)
+
+  t.deepEqual(images, result)
+})
+
+test('saveUser', async t => {
+  const client = t.context.client
+
+  let user = fixtures.getUser()
+  let newUser = {
+    username: user.username,
+    name: user.name,
+    email: 'user@platzigram.test',
+    password: 'john'
+  }
+
+  nock(options.endpoints.users)
+    .post('/', newUser)
+    .reply(201, user)
+
+  let result = await client.saveUser(newUser)
+
+  t.deepEqual(result, user)
+})
+
+test('getUser', async t => {
+  const client = t.context.client
+
+  let user = fixtures.getUser()
+
+  nock(options.endpoints.users)
+    .get(`/${user.username}`)
+    .reply(200, user)
+
+  let result = await client.getUser(user.username)
+
+  t.deepEqual(result, user)
+})
+
+test('auth', async t => {
+  const client = t.context.client
+
+  let credentials = {
+    username: 'jandrey',
+    password: 'john'
+  }
+
+  let token = 'xxx-xxx-xxx'
+
+  nock(options.endpoints.auth)
+    .post('/', credentials)
+    .reply(201, token)
+
+  let result = await client.auth(credentials.username, credentials.password)
+
+  t.deepEqual(result, token)
 })
